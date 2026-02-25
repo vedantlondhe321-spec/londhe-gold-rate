@@ -33,6 +33,16 @@ def home():
     if not rate:
         return "<h2 style='text-align:center;margin-top:50px;'>Rates Not Updated Yet</h2>"
 
+    message = f"""Londhe Jewelers 💎
+22K Gold: ₹ {rate[0]}
+24K Gold: ₹ {rate[1]}
+Silver: ₹ {rate[2]}
+Updated: {rate[3]}
+📍 Khamla Road, Nagpur
+📞 9373116054"""
+
+    whatsapp_link = f"https://wa.me/?text={message}"
+
     return f"""
     <html>
     <head>
@@ -59,10 +69,14 @@ def home():
             font-size: 22px;
             margin: 15px 0;
         }}
-        .update {{
-            font-size: 12px;
-            color: #aaa;
+        .btn {{
             margin-top: 20px;
+            padding: 10px 20px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
         }}
     </style>
     </head>
@@ -72,10 +86,11 @@ def home():
             <div class="rate">22K Gold: ₹ {rate[0]}</div>
             <div class="rate">24K Gold: ₹ {rate[1]}</div>
             <div class="rate">Silver: ₹ {rate[2]}</div>
-            <div class="update">Last Updated: {rate[3]}</div>
+            <div style="font-size:12px;margin-top:10px;">Updated: {rate[3]}</div>
             <br>
-            <div>📍 Khamla Road, Nagpur</div>
-            <div>📞 9373116054</div>
+            <a class="btn" href="{whatsapp_link}" target="_blank">
+                📲 Share on WhatsApp
+            </a>
         </div>
     </body>
     </html>
@@ -115,4 +130,4 @@ def update():
 
 if __name__ == "__main__":
     init_db()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
